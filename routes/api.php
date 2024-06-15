@@ -8,3 +8,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('categories', [\App\Http\Controllers\Api\CategoryController::class, 'index']);
+Route::get('categories/{category}', [\App\Http\Controllers\Api\CategoryController::class, 'show']);

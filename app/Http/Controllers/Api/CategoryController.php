@@ -11,4 +11,9 @@ class CategoryController extends Controller
     {
         return Category::all();
     }
+
+    public function show(Category $category)
+    {
+        return $category;
+    }
 }
