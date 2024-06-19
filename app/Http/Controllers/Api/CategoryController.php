@@ -8,6 +8,7 @@ use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -23,7 +24,16 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request): JsonResource
     {
-        $category = Category::create($request->validated());
+        $data = $request->validated();
+
+        if (isset($data['photo'])) {
+            $file = $data['photo'];
+            $name = 'categories/'.Str::uuid().'.'.$file->extension();
+            $file->storePubliclyAs('public', $name);
+            $data['photo'] = $name;
+        }
+
+        $category = Category::create($data);
 
         return new CategoryResource($category);
     }

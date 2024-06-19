@@ -24,6 +24,9 @@ class CategoryResource extends JsonResource
 
                 return $this->description;
             }),
+            'photo' => $this->when($request->is('api/categories*'), function () {
+                return $this->photo;
+            }),
         ];
     }
 }
