@@ -11,3 +11,5 @@ Route::get('lists/categories', [\App\Http\Controllers\Api\CategoryController::cl
 
 Route::get('categories', [\App\Http\Controllers\Api\CategoryController::class, 'index']);
 Route::get('categories/{category}', [\App\Http\Controllers\Api\CategoryController::class, 'show']);
+
+Route::get('products', [\App\Http\Controllers\Api\ProductController::class, 'index']);
